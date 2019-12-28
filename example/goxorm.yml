@@ -1,0 +1,14 @@
+kind: reverse
+name: mydb
+source:
+  database: sqlite3
+  conn_str: '../testdata/test.db'
+targets:
+- type: codes
+  include_tables:
+    - a
+    - b
+  exclude_tables:
+    - c
+  language: golang
+  output_dir: ../models
