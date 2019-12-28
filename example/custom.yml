@@ -1,0 +1,35 @@
+kind: reverse
+name: mydb
+source:
+  database: sqlite
+  conn_str: ../testdata/test.db
+targets:
+- type: codes
+  include_tables:
+    - a
+    - b
+  exclude_tables:
+    - c
+  table_mapper: snake
+  column_mapper: snake
+  table_prefix: ""
+  multiple_files: true
+  template: |
+    package models
+
+    {{$ilen := len .Imports}}
+    {{if gt $ilen 0}}
+    import (
+      {{range .Imports}}"{{.}}"{{end}}
+    )
+    {{end}}
+
+    {{range .Tables}}
+    type {{TableMapper .Name}} struct {
+    {{$table := .}}
+    {{range .ColumnsSeq}}{{$col := $table.GetColumn .}}	{{ColumnMapper $col.Name}}	{{Type $col}} `{{Tag $table $col}}`
+    {{end}}
+    }
+    {{end}}
+  template_path: ./template/goxorm.tmpl
+  output_dir: ./models
