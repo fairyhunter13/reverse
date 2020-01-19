@@ -16,11 +16,7 @@ import (
 	"xorm.io/reverse/language"
 
 	"gitea.com/lunny/log"
-	_ "github.com/denisenkom/go-mssqldb"
-	_ "github.com/go-sql-driver/mysql"
 	"github.com/gobwas/glob"
-	_ "github.com/lib/pq"
-	_ "github.com/mattn/go-sqlite3"
 	"gopkg.in/yaml.v2"
 	"xorm.io/core"
 	"xorm.io/xorm"
@@ -47,6 +43,7 @@ func reverse(rFile string) error {
 	return nil
 }
 
+// ReverseSource represents a reverse source which should be a database connection
 type ReverseSource struct {
 	Database string `yaml:"database"`
 	ConnStr  string `yaml:"conn_str"`
@@ -96,9 +93,8 @@ func unTitle(src string) string {
 
 	if len(src) == 1 {
 		return strings.ToLower(string(src[0]))
-	} else {
-		return strings.ToLower(string(src[0])) + src[1:]
 	}
+	return strings.ToLower(string(src[0])) + src[1:]
 }
 
 func upTitle(src string) string {

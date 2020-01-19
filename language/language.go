@@ -25,6 +25,7 @@ var (
 	languages = make(map[string]*Language)
 )
 
+// RegisterLanguage registers a language
 func RegisterLanguage(l *Language) {
 	languages[l.Name] = l
 }
