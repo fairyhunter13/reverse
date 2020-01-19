@@ -3,9 +3,9 @@ name: default
 
 steps:
 - name: test
-  image: golang:1.12
+  image: golang:1.13
   environment:
       GOPROXY: https://goproxy.cn
   commands:
-  - go build
-  - go test -v -race -coverprofile=coverage.txt -covermode=atomic ./...
+  - go build -mod=vendor
+  - go test -mod=vendor -v -race -coverprofile=coverage.txt -covermode=atomic ./...
