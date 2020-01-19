@@ -1,0 +1,1 @@
+go test -db=mssql -conn_str="server=localhost;user id=sa;password=***REMOVED***;database=xorm_test"

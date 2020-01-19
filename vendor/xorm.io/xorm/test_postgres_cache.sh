@@ -1,0 +1,1 @@
+go test -db=***REMOVED*** -conn_str="dbname=xorm_test sslmode=disable" -cache=true
