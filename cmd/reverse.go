@@ -147,6 +147,17 @@ func newFuncs() template.FuncMap {
 	return m
 }
 
+func convertMapper(mapname string) core.IMapper {
+	switch mapname {
+	case "gonic":
+		return core.LintGonicMapper
+	case "same":
+		return core.SameMapper{}
+	default:
+		return core.SnakeMapper{}
+	}
+}
+
 func runReverse(source *ReverseSource, target *ReverseTarget) error {
 	orm, err := xorm.NewEngine(source.Database, source.ConnStr)
 	if err != nil {
@@ -197,23 +208,9 @@ func runReverse(source *ReverseSource, target *ReverseTarget) error {
 		target.ExtName = "." + target.ExtName
 	}
 
-	var tableMapper, colMapper core.IMapper
-	switch target.TableMapper {
-	case "gonic":
-		tableMapper = core.LintGonicMapper
-	case "same":
-		tableMapper = core.SameMapper{}
-	default:
-		tableMapper = core.SnakeMapper{}
-	}
-	switch target.ColumnMapper {
-	case "gonic":
-		colMapper = core.LintGonicMapper
-	case "same":
-		colMapper = core.SameMapper{}
-	default:
-		colMapper = core.SnakeMapper{}
-	}
+	var tableMapper = convertMapper(target.TableMapper)
+	var colMapper = convertMapper(target.ColumnMapper)
+
 	funcs["TableMapper"] = tableMapper.Table2Obj
 	funcs["ColumnMapper"] = colMapper.Table2Obj
 

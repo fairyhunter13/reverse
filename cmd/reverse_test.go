@@ -10,6 +10,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 var result = fmt.Sprintf(`package models
