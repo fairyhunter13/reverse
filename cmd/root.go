@@ -11,6 +11,7 @@ import (
 )
 
 var (
+	// Version means the version of reverse
 	Version = "0.1+dev"
 
 	reverseFile string
@@ -44,6 +45,7 @@ func init() {
 	rootCmd.Flags().StringVarP(&reverseFile, "file", "f", "", "yml file to apply for reverse")
 }
 
+// Execute represnets execute command
 func Execute() error {
 	return rootCmd.Execute()
 }
