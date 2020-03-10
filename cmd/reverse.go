@@ -18,8 +18,9 @@ import (
 	"gitea.com/lunny/log"
 	"github.com/gobwas/glob"
 	"gopkg.in/yaml.v2"
-	"xorm.io/core"
 	"xorm.io/xorm"
+	"xorm.io/xorm/names"
+	"xorm.io/xorm/schemas"
 )
 
 func reverse(rFile string) error {
@@ -79,7 +80,7 @@ type ReverseConfig struct {
 
 var (
 	formatters   = map[string]func(string) (string, error){}
-	importters   = map[string]func([]*core.Table) []string{}
+	importters   = map[string]func([]*schemas.Table) []string{}
 	defaultFuncs = template.FuncMap{
 		"UnTitle": unTitle,
 		"Upper":   upTitle,
@@ -105,8 +106,8 @@ func upTitle(src string) string {
 	return strings.ToUpper(src)
 }
 
-func filterTables(tables []*core.Table, target *ReverseTarget) []*core.Table {
-	var res = make([]*core.Table, 0, len(tables))
+func filterTables(tables []*schemas.Table, target *ReverseTarget) []*schemas.Table {
+	var res = make([]*schemas.Table, 0, len(tables))
 	for _, tb := range tables {
 		var remove bool
 		for _, exclude := range target.ExcludeTables {
@@ -147,14 +148,14 @@ func newFuncs() template.FuncMap {
 	return m
 }
 
-func convertMapper(mapname string) core.IMapper {
+func convertMapper(mapname string) names.Mapper {
 	switch mapname {
 	case "gonic":
-		return core.LintGonicMapper
+		return names.LintGonicMapper
 	case "same":
-		return core.SameMapper{}
+		return names.SameMapper{}
 	default:
-		return core.SnakeMapper{}
+		return names.SnakeMapper{}
 	}
 }
 
@@ -279,7 +280,7 @@ func runReverse(source *ReverseSource, target *ReverseTarget) error {
 	} else {
 		for _, table := range tables {
 			// imports
-			tbs := []*core.Table{table}
+			tbs := []*schemas.Table{table}
 			imports := importter(tbs)
 
 			w, err := os.Create(filepath.Join(target.OutputDir, table.Name+target.ExtName))

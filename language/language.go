@@ -7,7 +7,7 @@ package language
 import (
 	"html/template"
 
-	"xorm.io/core"
+	"xorm.io/xorm/schemas"
 )
 
 // Language represents a languages supported when reverse codes
@@ -17,7 +17,7 @@ type Language struct {
 	Types     map[string]string
 	Funcs     template.FuncMap
 	Formatter func(string) (string, error)
-	Importter func([]*core.Table) []string
+	Importter func([]*schemas.Table) []string
 	ExtName   string
 }
 

@@ -13,7 +13,7 @@ import (
 	"sort"
 	"strings"
 
-	"xorm.io/core"
+	"xorm.io/xorm/schemas"
 )
 
 // Golang represents a golang language
@@ -84,7 +84,7 @@ func basicKind(v reflect.Value) (kind, error) {
 	return invalidKind, errBadComparisonType
 }
 
-func getCol(cols map[string]*core.Column, name string) *core.Column {
+func getCol(cols map[string]*schemas.Column, name string) *schemas.Column {
 	return cols[strings.ToLower(name)]
 }
 
@@ -96,7 +96,7 @@ func formatGo(src string) (string, error) {
 	return string(source), nil
 }
 
-func genGoImports(tables []*core.Table) []string {
+func genGoImports(tables []*schemas.Table) []string {
 	imports := make(map[string]string)
 	results := make([]string, 0)
 	for _, table := range tables {
@@ -112,9 +112,9 @@ func genGoImports(tables []*core.Table) []string {
 	return results
 }
 
-func typestring(col *core.Column) string {
+func typestring(col *schemas.Column) string {
 	st := col.SQLType
-	t := core.SQLType2Type(st)
+	t := schemas.SQLType2Type(st)
 	s := t.String()
 	if s == "[]uint8" {
 		return "[]byte"
@@ -122,7 +122,7 @@ func typestring(col *core.Column) string {
 	return s
 }
 
-func tag(table *core.Table, col *core.Column) template.HTML {
+func tag(table *schemas.Table, col *schemas.Column) template.HTML {
 	isNameId := col.FieldName == "Id"
 	isIdPk := isNameId && typestring(col) == "int64"
 
@@ -167,9 +167,9 @@ func tag(table *core.Table, col *core.Column) template.HTML {
 	for _, name := range names {
 		index := table.Indexes[name]
 		var uistr string
-		if index.Type == core.UniqueType {
+		if index.Type == schemas.UniqueType {
 			uistr = "unique"
-		} else if index.Type == core.IndexType {
+		} else if index.Type == schemas.IndexType {
 			uistr = "index"
 		}
 		if len(index.Cols) > 1 {
