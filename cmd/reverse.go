@@ -8,6 +8,7 @@ import (
 	"bytes"
 	"errors"
 	"html/template"
+	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -29,9 +30,12 @@ func reverse(rFile string) error {
 		return err
 	}
 	defer f.Close()
+	return reverseFromReader(f)
+}
 
+func reverseFromReader(rd io.Reader) error {
 	var cfg ReverseConfig
-	err = yaml.NewDecoder(f).Decode(&cfg)
+	err := yaml.NewDecoder(rd).Decode(&cfg)
 	if err != nil {
 		return err
 	}
