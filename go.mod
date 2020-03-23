@@ -12,5 +12,5 @@ require (
 	github.com/spf13/cobra v0.0.5
 	github.com/stretchr/testify v1.4.0
 	gopkg.in/yaml.v2 v2.2.2
-	xorm.io/xorm v0.8.3-0.20200310061142-2f95c750c348
+	xorm.io/xorm v1.0.0
 )

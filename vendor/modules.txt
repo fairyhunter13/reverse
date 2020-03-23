@@ -54,9 +54,9 @@ golang.org/x/crypto/md4
 google.golang.org/appengine/cloudsql
 # gopkg.in/yaml.v2 v2.2.2
 gopkg.in/yaml.v2
-# xorm.io/builder v0.3.6
+# xorm.io/builder v0.3.7
 xorm.io/builder
-# xorm.io/xorm v0.8.3-0.20200310061142-2f95c750c348
+# xorm.io/xorm v1.0.0
 xorm.io/xorm
 xorm.io/xorm/caches
 xorm.io/xorm/contexts
