@@ -2,6 +2,8 @@ module github.com/fairyhunter13/reverse
 
 go 1.13
 
+replace github.com/fairyhunter13/xorm => ../xorm
+
 require (
 	gitea.com/lunny/log v0.0.0-20190322053110-01b5df579c4e
 	github.com/denisenkom/go-mssqldb v0.0.0-20200206145737-bbfc9a55622e
