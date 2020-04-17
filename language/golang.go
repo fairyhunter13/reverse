@@ -134,20 +134,27 @@ func typestring(col *schemas.Column) string {
 	t := schemas.SQLType2Type(st)
 	s := t.String()
 	if s == "[]uint8" {
-		return "[]byte"
+		s = "[]byte"
 	}
-	return s
+	return addPointer(s, col.Nullable)
+}
+
+func addPointer(typeStr string, isNullable bool) string {
+	if isNullable {
+		return "*" + typeStr
+	}
+	return typeStr
 }
 
 func tag(table *schemas.Table, col *schemas.Column) template.HTML {
-	isNameId := col.FieldName == "Id"
-	isIdPk := isNameId && typestring(col) == "int64"
-
 	var res []string
+
+	colName := "'" + col.Name + "'"
+	res = append(res, colName)
 	if !col.Nullable {
-		if !isIdPk {
-			res = append(res, "not null")
-		}
+		res = append(res, "notnull")
+	} else {
+		res = append(res, "null")
 	}
 	if col.IsPrimaryKey {
 		res = append(res, "pk")
@@ -195,7 +202,7 @@ func tag(table *schemas.Table, col *schemas.Column) template.HTML {
 		res = append(res, uistr)
 	}
 
-	nstr := col.SQLType.Name
+	nstr := schemas.OriginalTypeName(col.SQLType)
 	if col.Length != 0 {
 		if col.Length2 != 0 {
 			nstr += fmt.Sprintf("(%v,%v)", col.Length, col.Length2)
