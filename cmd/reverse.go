@@ -14,14 +14,14 @@ import (
 	"path/filepath"
 	"strings"
 
-	"xorm.io/reverse/language"
+	"github.com/fairyhunter13/reverse/language"
 
 	"gitea.com/lunny/log"
+	"github.com/fairyhunter13/xorm"
+	"github.com/fairyhunter13/xorm/names"
+	"github.com/fairyhunter13/xorm/schemas"
 	"github.com/gobwas/glob"
 	"gopkg.in/yaml.v2"
-	"xorm.io/xorm"
-	"xorm.io/xorm/names"
-	"xorm.io/xorm/schemas"
 )
 
 func reverse(rFile string) error {
