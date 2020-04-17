@@ -1,7 +1,7 @@
 [中文](README_CN.md)
 
-[![Build Status](https://drone.gitea.com/api/badges/xorm/reverse/status.svg)](https://drone.gitea.com/xorm/reverse) [![](http://gocover.io/_badge/xorm.io/xorm)](https://gocover.io/xorm.io/reverse)
-[![](https://goreportcard.com/badge/xorm.io/reverse)](https://goreportcard.com/report/xorm.io/reverse)
+[![Build Status](https://drone.gitea.com/api/badges/xorm/reverse/status.svg)](https://drone.gitea.com/xorm/reverse) [![](http://gocover.io/_badge/github.com/fairyhunter13/xorm)](https://gocover.io/github.com/fairyhunter13/reverse)
+[![](https://goreportcard.com/badge/github.com/fairyhunter13/reverse)](https://goreportcard.com/report/github.com/fairyhunter13/reverse)
 
 # Reverse
 
@@ -10,7 +10,7 @@ A flexsible and powerful command line tool to convert database to codes.
 ## Installation
 
 ```
-go get xorm.io/reverse
+go get github.com/fairyhunter13/reverse
 ```
 
 ## Usage

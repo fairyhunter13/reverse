@@ -1,2 +1,8 @@
-reverse
 models/
+
+# Ignoring build files
+reverse
+reverse.exe
+
+# Ignoring other files
+codealike.json
