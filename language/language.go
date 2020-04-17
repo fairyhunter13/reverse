@@ -7,7 +7,7 @@ package language
 import (
 	"html/template"
 
-	"xorm.io/xorm/schemas"
+	"github.com/fairyhunter13/xorm/schemas"
 )
 
 // Language represents a languages supported when reverse codes
