@@ -2,12 +2,10 @@ module github.com/fairyhunter13/reverse
 
 go 1.13
 
-replace github.com/fairyhunter13/xorm => ../xorm
-
 require (
 	gitea.com/lunny/log v0.0.0-20190322053110-01b5df579c4e
 	github.com/denisenkom/go-mssqldb v0.0.0-20200206145737-bbfc9a55622e
-	github.com/fairyhunter13/xorm v1.0.1-imp-9
+	github.com/fairyhunter13/xorm v1.0.1-imp-11
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/gobwas/glob v0.2.3
 	github.com/lib/pq v1.3.0
