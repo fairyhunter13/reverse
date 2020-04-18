@@ -130,17 +130,12 @@ func addPointer(typeStr string, isNullable bool) string {
 }
 
 func tag(table *schemas.Table, col *schemas.Column) template.HTML {
-	isNameId := col.FieldName == "Id"
-	isIdPk := isNameId && typestring(col) == "int64"
-
 	var res []string
 
 	colName := "'" + col.Name + "'"
 	res = append(res, colName)
 	if !col.Nullable {
-		if !isIdPk {
-			res = append(res, "notnull")
-		}
+		res = append(res, "notnull")
 	} else {
 		res = append(res, "null")
 	}
@@ -190,7 +185,7 @@ func tag(table *schemas.Table, col *schemas.Column) template.HTML {
 		res = append(res, uistr)
 	}
 
-	nstr := col.SQLType.Name
+	nstr := schemas.OriginalTypeName(col.SQLType)
 	if col.Length != 0 {
 		if col.Length2 != 0 {
 			nstr += fmt.Sprintf("(%v,%v)", col.Length, col.Length2)
