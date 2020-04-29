@@ -160,7 +160,7 @@ func tag(table *schemas.Table, col *schemas.Column) template.HTML {
 		res = append(res, "pk")
 	}
 	if col.Default != "" {
-		res = append(res, "default "+col.Default)
+		res = append(res, fmt.Sprintf("default(%s)", col.Default))
 	}
 	if col.IsAutoIncrement {
 		res = append(res, "autoincr")
