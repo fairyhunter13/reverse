@@ -31,6 +31,12 @@ func RegisterLanguage(l *Language) {
 }
 
 // GetLanguage returns a language if exists
-func GetLanguage(name string) *Language {
-	return languages[name]
+func GetLanguage(name string, tableName bool) *Language {
+	language := languages[name]
+	if tableName {
+		language = languages[name]
+		language.Template = defaultGolangTemplateTable
+		return language
+	}
+	return language
 }

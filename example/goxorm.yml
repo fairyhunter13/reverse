@@ -11,4 +11,5 @@ targets:
   exclude_tables:
     - c
   language: golang
+  table_name: true
   output_dir: ../models

@@ -13,4 +13,5 @@ type {{TableMapper .Name}} struct {
 {{range .ColumnsSeq}}{{$col := $table.GetColumn .}}	{{ColumnMapper $col.Name}}	{{Type $col}} `{{Tag $table $col}}`
 {{end}}
 }
+
 {{end}}

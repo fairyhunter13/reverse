@@ -5,6 +5,7 @@ source:
   conn_str: ../testdata/test.db
 targets:
 - type: codes
+  language: golang
   include_tables:
     - a
     - b
@@ -14,6 +15,7 @@ targets:
   column_mapper: snake
   table_prefix: ""
   multiple_files: true
+  table_name: true
   template: |
     package models
 
