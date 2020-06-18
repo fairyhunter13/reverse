@@ -21,7 +21,7 @@ var (
 	result = fmt.Sprintf(`package models
 
 type A struct {
-	Id int %sxorm:"'Id' integer"%s
+	Id int %sxorm:"integer"%s
 }
 
 func (m *A) TableName() string {
@@ -29,7 +29,7 @@ func (m *A) TableName() string {
 }
 
 type B struct {
-	Id int %sxorm:"'Id' INTEGER"%s
+	Id int %sxorm:"INTEGER"%s
 }
 
 func (m *B) TableName() string {
