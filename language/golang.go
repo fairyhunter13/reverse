@@ -144,7 +144,6 @@ func tag(table *schemas.Table, col *schemas.Column) template.HTML {
 	isIdPk := isNameId && typestring(col) == "int64"
 
 	var res []string
-	res = append(res, "'"+col.FieldName+"'")
 	if !col.Nullable {
 		if !isIdPk {
 			res = append(res, "not null")
