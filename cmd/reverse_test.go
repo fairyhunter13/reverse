@@ -17,16 +17,26 @@ import (
 	"xorm.io/xorm"
 )
 
-var result = fmt.Sprintf(`package models
+var (
+	result = fmt.Sprintf(`package models
 
 type A struct {
-	Id int %sxorm:"integer"%s
+	Id int %sxorm:"'Id' integer"%s
+}
+
+func (m *A) TableName() string {
+	return "a"
 }
 
 type B struct {
-	Id int %sxorm:"INTEGER"%s
+	Id int %sxorm:"'Id' INTEGER"%s
+}
+
+func (m *B) TableName() string {
+	return "b"
 }
 `, "`", "`", "`", "`")
+)
 
 func TestReverse(t *testing.T) {
 	err := reverse("../example/goxorm.yml")

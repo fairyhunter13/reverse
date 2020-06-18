@@ -67,6 +67,7 @@ type ReverseTarget struct {
 	OutputDir     string   `yaml:"output_dir"`
 	TablePrefix   string   `yaml:"table_prefix"`
 	Language      string   `yaml:"language"`
+	TableName     bool     `yaml:"table_name"`
 
 	Funcs     map[string]string `yaml:"funcs"`
 	Formatter string            `yaml:"formatter"`
@@ -178,7 +179,7 @@ func runReverse(source *ReverseSource, target *ReverseTarget) error {
 	tables = filterTables(tables, target)
 
 	// load configuration from language
-	lang := language.GetLanguage(target.Language)
+	lang := language.GetLanguage(target.Language, target.TableName)
 	funcs := newFuncs()
 	formatter := formatters[target.Formatter]
 	importter := importters[target.Importter]
@@ -196,6 +197,7 @@ func runReverse(source *ReverseSource, target *ReverseTarget) error {
 
 	if lang != nil {
 		if bs == nil {
+
 			bs = []byte(lang.Template)
 		}
 		for k, v := range lang.Funcs {

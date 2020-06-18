@@ -51,6 +51,23 @@ type {{TableMapper .Name}} struct {
 }
 {{end}}
 `, "`", "`")
+	defaultGolangTemplateTable = fmt.Sprintf(`package models
+
+{{$ilen := len .Imports}}{{if gt $ilen 0}}import (
+	{{range .Imports}}"{{.}}"{{end}}
+){{end}}
+
+{{range .Tables}}
+type {{TableMapper .Name}} struct {
+{{$table := .}}{{range .ColumnsSeq}}{{$col := $table.GetColumn .}}	{{ColumnMapper $col.Name}}	{{Type $col}} %s{{Tag $table $col}}%s
+{{end}}
+}
+
+func (m *{{TableMapper .Name}}) TableName() string {
+	return "{{$table.Name}}"
+}
+{{end}}
+`, "`", "`")
 )
 
 type kind int
@@ -127,6 +144,7 @@ func tag(table *schemas.Table, col *schemas.Column) template.HTML {
 	isIdPk := isNameId && typestring(col) == "int64"
 
 	var res []string
+	res = append(res, "'"+col.FieldName+"'")
 	if !col.Nullable {
 		if !isIdPk {
 			res = append(res, "not null")

@@ -70,6 +70,10 @@ targets:
     {{range .ColumnsSeq}}{{$col := $table.GetColumn .}}	{{ColumnMapper $col.Name}}	{{Type $col}} `{{Tag $table $col}}`
     {{end}}
     }
+
+    func (m *{{TableMapper .Name}}) TableName() string {
+    	return "{{$table.Name}}"
+    }
     {{end}}
   template_path: ./template/goxorm.tmpl # template path for code file, it has higher perior than template field on language
   output_dir: ./models # code output directory
