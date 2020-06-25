@@ -21,6 +21,10 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/denisenkom/go-mssqldb v0.0.0-20200620013148-b91950f658ec h1:NfhRXXFDPxcF5Cwo06DzeIaE7uuJtAUhsDwH3LNsjos=
 github.com/denisenkom/go-mssqldb v0.0.0-20200620013148-b91950f658ec/go.mod h1:xbL0rPBG9cCiLr28tMa8zpbdarY27NDyej4t/EjAShU=
+github.com/fairyhunter13/decimal v1.2.0-imp-3 h1:XGUtpjnOyqvq4V8W6hsXP0qYjcwTx/aZ9yP7f3X5CWw=
+github.com/fairyhunter13/decimal v1.2.0-imp-3/go.mod h1:pqb4RNxJI5R5ilHfmg9FTkpRMxi95Sa1K6tACdWfv9M=
+github.com/fairyhunter13/newtype v1.0.9 h1:0Ls060Ez/5bQ68H4LydTRUHk6SPXZNjk5BtjA2YR3co=
+github.com/fairyhunter13/newtype v1.0.9/go.mod h1:ta3gbBY75TORM7VVmLaI6nb5i73SDMgAps7QDw9JKFM=
 github.com/fairyhunter13/xorm v1.0.2-imp-14 h1:h7UGiOBFx+jBJ0DFyQ/bvFDHLdtUAoMVyZK6x25oopo=
 github.com/fairyhunter13/xorm v1.0.2-imp-14/go.mod h1:KkKNbo2bc53U4jtwTi02lac+cI8x/+X3cwrOJNYr+QI=
 github.com/fsnotify/fsnotify v1.4.7 h1:IXs+QLmnXW2CcXuY+8Mzv/fWEsPGWxqefPtCP5CnV9I=
