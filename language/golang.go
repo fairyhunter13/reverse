@@ -13,6 +13,8 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/fairyhunter13/decimal"
+	"github.com/fairyhunter13/newtype"
 	"github.com/fairyhunter13/xorm/schemas"
 )
 
@@ -131,12 +133,25 @@ func genGoImports(tables []*schemas.Table) []string {
 
 func typestring(col *schemas.Column) string {
 	st := col.SQLType
-	t := schemas.SQLType2Type(st)
+	t := sqlType2Type(st)
 	s := t.String()
 	if s == "[]uint8" {
 		s = "[]byte"
 	}
 	return addPointer(s, col.Nullable)
+}
+
+func sqlType2Type(st schemas.SQLType) (result reflect.Type) {
+	name := strings.ToUpper(st.Name)
+	switch name {
+	case schemas.Decimal, schemas.Numeric, schemas.Money, schemas.SmallMoney:
+		result = reflect.TypeOf(decimal.Decimal{})
+	case schemas.Bool:
+		result = reflect.TypeOf(newtype.Bool(true))
+	default:
+		result = schemas.SQLType2Type(st)
+	}
+	return
 }
 
 func addPointer(typeStr string, isNullable bool) string {
